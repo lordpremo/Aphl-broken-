@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8" />
+  <title>BROKEN LORD MD – Any Link to Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #ff00cc 0, #2e026d 40%, #020617 100%);
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 700px;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 20px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 0 40px rgba(129, 140, 248, 0.6);
+      overflow: hidden;
+    }
+
+    /* LOADING */
+    .loading-screen {
+      padding: 30px 20px 26px;
+      text-align: center;
+    }
+
+    .logo-wrap {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 14px;
+      border-radius: 999px;
+      border: 2px solid rgba(129, 140, 248, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(129, 140, 248, 0.8);
+      animation: spin 2.2s linear infinite;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.2), transparent 60%);
+    }
+
+    .logo-wrap img {
+      width: 70px;
+      height: 70px;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+
+    .title {
+      font-size: 1.4rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: linear-gradient(90deg, #f97316, #e11d48, #8b5cf6, #22c55e);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .sub {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      overflow: hidden;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      margin-bottom: 6px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #22c55e, #a855f7, #f97316);
+      transition: width 0.15s linear;
+    }
+
+    .progress-text {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    /* APP */
+    .app {
+      display: none;
+      padding: 18px 18px 20px;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .app-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.2), transparent 60%);
+    }
+
+    .app-icon img {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .app-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .app-sub {
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    label {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input[type="url"] {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+      padding: 8px 10px;
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    input[type="url"]:focus {
+      border-color: #6366f1;
+      box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.7);
+    }
+
+    .btn-row {
+      margin-top: 10px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 8px;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .primary {
+      background: linear-gradient(135deg, #4f46e5, #ec4899);
+      color: #f9fafb;
+    }
+
+    .small {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .codes-wrap {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 360px;
+      overflow-y: auto;
+    }
+
+    .code-box {
+      background: #020617;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 10px 10px 8px;
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+      color: #9ca3af;
+    }
+
+    .code-header span.name {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .copy-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: #e5e7eb;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      cursor: pointer;
+    }
+
+    pre {
+      margin: 0;
+      max-height: 260px;
+      overflow: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.78rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #e5e7eb;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <!-- LOADING -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="logo-wrap">
+        <img src="https://upcdn.io/kW2K8mM/raw/uploads/2026/02/17/4j9r7q8N7G-5c9c8c2f-632f-4d7d-b783-9480ad265013.png" alt="BROKEN LORD" />
+      </div>
+      <div class="title">BROKEN LORD MD</div>
+      <div class="sub">Booting Broken Lord Any-Link Code Engine...</div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">Loading 0%</div>
+      </div>
+    </div>
+
+    <!-- APP -->
+    <div class="app" id="app">
+      <div class="app-header">
+        <div class="app-icon">
+          <img src="https://upcdn.io/kW2K8mM/raw/uploads/2026/02/17/4j9r7q8N7G-5c9c8c2f-632f-4d7d-b783-9480ad265013.png" alt="BL" />
+        </div>
+        <div>
+          <div class="app-title">BROKEN LORD MD</div>
+          <div class="app-sub">Link yoyote • Proxy • Code in a clean box.</div>
+        </div>
+      </div>
+
+      <label for="urlInput">Weka link yoyote ya file (HTML, CSS, JS, PHP, n.k.):</label>
+      <input id="urlInput" type="url" placeholder="https://example.com/file.php" />
+
+      <div class="btn-row">
+        <button class="primary" id="runBtn">RUN</button>
+      </div>
+
+      <div class="small" id="statusText">Hakuna request bado.</div>
+
+      <div class="codes-wrap" id="codesWrap"></div>
+    </div>
+  </div>
+
+  <script>
+    // LOADING
+    const loadingScreen = document.getElementById("loadingScreen");
+    const app = document.getElementById("app");
+    const progressFill = document.getElementById("progressFill");
+    const progressText = document.getElementById("progressText");
+
+    let progress = 0;
+    const timer = setInterval(() => {
+      progress += Math.floor(Math.random() * 8) + 3;
+      if (progress > 100) progress = 100;
+      progressFill.style.width = progress + "%";
+      progressText.textContent = "Loading " + progress + "%";
+
+      if (progress >= 100) {
+        clearInterval(timer);
+        setTimeout(() => {
+          loadingScreen.style.display = "none";
+          app.style.display = "block";
+        }, 300);
+      }
+    }, 120);
+
+    // APP
+    const urlInput = document.getElementById("urlInput");
+    const runBtn = document.getElementById("runBtn");
+    const statusText = document.getElementById("statusText");
+    const codesWrap = document.getElementById("codesWrap");
+
+    function isValidUrl(value) {
+      try {
+        new URL(value);
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    function getFileNameFromUrl(url) {
+      try {
+        const u = new URL(url);
+        const path = u.pathname;
+        const parts = path.split("/");
+        const last = parts.pop() || parts.pop();
+        return last || url;
+      } catch {
+        return url;
+      }
+    }
+
+    function addCodeBox(name, content) {
+      const box = document.createElement("div");
+      box.className = "code-box";
+
+      const header = document.createElement("div");
+      header.className = "code-header";
+
+      const nameSpan = document.createElement("span");
+      nameSpan.className = "name";
+      nameSpan.textContent = name;
+
+      const copyBtn = document.createElement("button");
+      copyBtn.className = "copy-btn";
+      copyBtn.textContent = "Copy";
+
+      header.appendChild(nameSpan);
+      header.appendChild(copyBtn);
+
+      const pre = document.createElement("pre");
+      pre.textContent = content;
+
+      box.appendChild(header);
+      box.appendChild(pre);
+      codesWrap.prepend(box);
+
+      copyBtn.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(content);
+          statusText.textContent = "Code imekopiwa.";
+        } catch {
+          statusText.textContent = "Imeshindikana ku-copy.";
+        }
+      });
+    }
+
+    async function runFetch() {
+      const raw = urlInput.value.trim();
+      if (!raw) {
+        statusText.textContent = "Tafadhali weka link kwanza.";
+        return;
+      }
+      if (!isValidUrl(raw)) {
+        statusText.textContent = "Link sio sahihi. Hakikisha umeweka https://...";
+        return;
+      }
+
+      statusText.textContent = "Inapitia proxy, inaleta code kutoka: " + raw;
+
+      try {
+        const res = await fetch("/api/proxy", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ url: raw })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || !data.ok) {
+          statusText.textContent = "Error: " + (data.error || "Proxy failed.");
+          return;
+        }
+
+        const name = getFileNameFromUrl(data.url);
+        addCodeBox(name, data.content);
+        statusText.textContent = "Code imepatikana. Kibox kimeongezwa juu.";
+      } catch (e) {
+        statusText.textContent = "Network / proxy error: " + e;
+      }
+    }
+
+    runBtn.addEventListener("click", runFetch);
+  </script>
+</body>
+</html>
